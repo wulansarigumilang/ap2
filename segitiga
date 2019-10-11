@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PraktikumAP2
+{
+    abstract class BentukBenda
+    {
+        static int jumlahObjek = 0;
+        protected double luas;
+        public abstract double Luas();
+        public BentukBenda()
+        {
+            jumlahObjek++;
+        }
+        public static int getJumlahObjek()
+        {
+            return jumlahObjek;
+        }
+    }
+
+    class SegiTiga : BentukBenda
+    {
+        static int jumlahObjek = 0;
+        int nomorObjek;
+        public double alas, tinggi;
+        public static int JumlahObjek
+        {
+            get
+            {
+                return jumlahObjek;
+            }
+
+        }
+
+        public SegiTiga(double LebarAlas, double Tinggi)
+        {
+            jumlahObjek++;
+            nomorObjek = jumlahObjek;
+            alas = LebarAlas;
+            tinggi = Tinggi;
+            luas = Luas();
+        }
+
+        public SegiTiga() : this(50, 50) { }
+        public SegiTiga(double Sisi) : base() { }
+        public override double Luas()
+        {
+            luas = alas * tinggi / 2.0;
+            return luas;
+        }
+        public override string ToString()
+        {
+            string hasil = "\nSegi Tiga ke-" + nomorObjek
+                + "\n\tAlas\t: " + alas
+                + "\n\tTinggi\t: " + tinggi
+                + "\n\tLuas\t: " + luas;
+            return hasil;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            SegiTiga benda1 = new SegiTiga(2.4, 5.0);
+            SegiTiga benda2 = benda1;
+            //benda1.alas = 4
+            benda2 = new SegiTiga();
+            SegiTiga benda3 = new SegiTiga(40, 15);
+            Console.WriteLine(benda1);
+            Console.WriteLine(benda2);
+            Console.WriteLine(benda3);
+            Console.WriteLine("\nJumlah Segitiga: " + SegiTiga.JumlahObjek);
+            //Console.WriteLine(BentukBenda.getJumlahObjek(()using System
+            Console.ReadKey();
+
+        }
+    }
+}
